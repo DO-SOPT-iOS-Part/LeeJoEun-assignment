@@ -10,9 +10,23 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    let mainView = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .black
+
+        setHierarchy()
+        setConstraints()
+    }
+
+    func setHierarchy() {
+        self.view.addSubview(mainView)
+    }
+
+    func setConstraints() {
+        mainView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
