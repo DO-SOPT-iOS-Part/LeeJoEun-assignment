@@ -29,6 +29,11 @@ final class DetailView: UIView {
         return scrollView
     }()
 
+    private let contentView: UIView = {
+        let contentView = UIView()
+        return contentView
+    }()
+
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.text = "서울특별시"
@@ -74,7 +79,10 @@ final class DetailView: UIView {
 
     private let descriptionTextView: UILabel = {
         let label = UILabel()
-        label.text = "08:00~09:00에 강우 상태가, 18:00에 한때 흐린 상태가 예상됩니다."
+        label.text = """
+        08:00~09:00에 강우 상태가, 18:00에 한때
+        흐린 상태가 예상됩니다.
+        """
         label.numberOfLines = 0
         label.textAlignment = .left
         label.font = UIFont.SFPro(size: 18, weight: .regular)
@@ -95,11 +103,15 @@ final class DetailView: UIView {
         return scrollView
     }()
 
+    private let weatherContentView: UIView = {
+        let contentView = UIView()
+        return contentView
+    }()
+
     private lazy var weatherStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 60
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 30
         return stackView
     }()
 
@@ -129,8 +141,9 @@ final class DetailView: UIView {
         return button
     }()
 
-    private lazy var stackView: UIStackView = {
+    private lazy var bottomStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -145,7 +158,7 @@ final class DetailView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.Detail.ic_list, for: .normal)
         button.tintColor = .WeatherWhite
-        button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        // button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -154,7 +167,7 @@ final class DetailView: UIView {
     }
 
     private func addWeatherOfHour() {
-        (0..<10).map { idx in
+        (0..<2).map { idx in
             let weatherOfHour: WeatherOfHour = {
                 let weather = WeatherOfHour()
                 return weather
@@ -167,10 +180,12 @@ final class DetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addWeatherOfHour()
-
         setHierarchy()
         setConstraints()
+
+        addWeatherOfHour()
+
+        listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -178,13 +193,15 @@ final class DetailView: UIView {
     }
 
     func setHierarchy() {
-        addSubviews(backgroundImageView)
+        self.addSubviews(backgroundImageView)
         backgroundImageView.addSubviews(scrollView, bottomNavigationView)
-        scrollView.addSubviews(cityLabel, temperatureLabel, stateLabel, maxminLabel, rectView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews(cityLabel, temperatureLabel, stateLabel, maxminLabel, rectView)
         rectView.addSubviews(descriptionTextView, dividerView, weatherScrollView)
-        weatherScrollView.addSubview(weatherStackView)
-        bottomNavigationView.addSubviews(dividerView2, mapButton, stackView, listButton)
-        stackView.addArrangedSubviews(paperPlaneButton, dotButton)
+        weatherScrollView.addSubview(weatherContentView)
+        weatherContentView.addSubview(weatherStackView)
+        bottomStackView.addArrangedSubviews(paperPlaneButton, dotButton)
+        bottomNavigationView.addSubviews(dividerView2, mapButton, bottomStackView, listButton)
     }
 
     func setConstraints() {
@@ -192,8 +209,13 @@ final class DetailView: UIView {
             $0.edges.equalToSuperview()
         }
         scrollView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(690)
+        }
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+            $0.height.equalTo(scrollView)
         }
         cityLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(18)
@@ -219,7 +241,6 @@ final class DetailView: UIView {
         }
         descriptionTextView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
-            $0.width.equalTo(305)
             $0.centerX.equalToSuperview()
         }
         dividerView.snp.makeConstraints {
@@ -231,10 +252,16 @@ final class DetailView: UIView {
         weatherScrollView.snp.makeConstraints {
             $0.top.equalTo(dividerView.snp.bottom).offset(10)
             $0.height.equalTo(122)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview()
+        }
+        weatherContentView.snp.makeConstraints {
+            $0.edges.equalTo(weatherScrollView.contentLayoutGuide)
+            $0.width.equalTo(weatherScrollView.frameLayoutGuide)
+            $0.height.equalTo(weatherScrollView)
         }
         weatherStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         bottomNavigationView.snp.makeConstraints {
             $0.height.equalTo(48)
@@ -249,7 +276,7 @@ final class DetailView: UIView {
             $0.leading.equalToSuperview().inset(10)
             $0.top.equalToSuperview().inset(4)
         }
-        stackView.snp.makeConstraints {
+        bottomStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)
             $0.height.equalTo(24)
             $0.centerX.equalToSuperview()

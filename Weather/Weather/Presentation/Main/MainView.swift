@@ -46,18 +46,19 @@ final class MainView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .clear
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
+    }()
+
+    private let contentView: UIView = {
+        let contentView = UIView()
+        return contentView
     }()
 
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 50
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 14
         return stackView
     }()
 
@@ -66,17 +67,6 @@ final class MainView: UIView {
         view.addTarget(self, action: #selector(clickWeatherCard), for: .touchUpInside)
         return view
     }()
-
-//    private func addWeatherCard() {
-//        (0..<7).map { idx in
-//            let WeatherCard: WeatherCardView = {
-//                let weatherCard = WeatherCardView()
-//                return weatherCard
-//            }()
-//            return WeatherCard
-//        }
-//        .forEach(stackView.addArrangedSubview)
-//    }
 
     @objc func clickWeatherCard(sender: UITapGestureRecognizer) {
         delegateClick?.weatherCardTapped()
@@ -87,8 +77,6 @@ final class MainView: UIView {
 
         setHierarchy()
         setConstraints()
-
-        //addWeatherCard()
     }
 
     required init?(coder: NSCoder) {
@@ -96,36 +84,39 @@ final class MainView: UIView {
     }
 
     func setHierarchy() {
-        addSubviews(moreButton, titleLabel, searchBar)
-        addSubview(scrollView)
-        scrollView.addSubview(stackView)
+        self.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews(moreButton, titleLabel, searchBar, stackView)
         stackView.addArrangedSubviews(weatherCard1)
     }
 
     func setConstraints() {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+            $0.height.equalTo(scrollView)
+        }
         moreButton.snp.makeConstraints {
             $0.size.equalTo(44)
-            $0.top.equalToSuperview().inset(56)
+            $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(moreButton.snp.bottom).offset(1)
+            $0.top.equalTo(moreButton.snp.bottom)
             $0.leading.equalToSuperview().inset(24)
+            $0.height.equalTo(44)
         }
         searchBar.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
-        scrollView.snp.makeConstraints {
-            $0.top.equalTo(searchBar.snp.bottom).offset(15)
-            $0.width.equalTo(335)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
         stackView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            // $0.width.equalTo(335)
-            $0.width.equalToSuperview()
+            $0.top.equalTo(searchBar.snp.bottom).offset(14)
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(335)
             $0.centerX.equalToSuperview()
         }
     }

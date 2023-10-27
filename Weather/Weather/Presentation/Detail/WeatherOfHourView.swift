@@ -53,7 +53,7 @@ final class WeatherOfHour: UIView {
     }
 
     func setHierarchy() {
-        addSubview(stackView)
+        self.addSubview(stackView)
         stackView.addArrangedSubviews(hourLabel, weatherImage, temperatureLabel)
     }
 
