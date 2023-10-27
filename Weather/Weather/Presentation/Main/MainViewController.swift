@@ -9,12 +9,14 @@ import UIKit
 
 import SnapKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     let mainView = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+
+        mainView.delegateClick = self
 
         setHierarchy()
         setConstraints()
@@ -28,5 +30,12 @@ class MainViewController: UIViewController {
         mainView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension MainViewController: ClickCardViewDelegate {
+    func weatherCardTapped() {
+        let nextVC = DetailViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

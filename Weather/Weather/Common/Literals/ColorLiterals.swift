@@ -12,11 +12,19 @@ extension UIColor {
         return UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     }
 
-    static var WeatherGray1: UIColor {
+    static var WeatherWhite_03: UIColor {
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.03)
+    }
+
+    static var WeatherWhite_1: UIColor {
         return UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
     }
 
-    static var WeatherGray2: UIColor {
+    static var WeatherWhite_2: UIColor {
+        return UIColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+    }
+
+    static var WeatherWhite_5: UIColor {
         return UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
     }
 

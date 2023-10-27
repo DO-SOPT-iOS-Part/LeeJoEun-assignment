@@ -1,5 +1,5 @@
 //
-//  weatherCardView.swift
+//  WeatherCardView.swift
 //  Weather
 //
 //  Created by 이조은 on 2023/10/25.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class weatherCardView: UIView {
+import SnapKit
+
+final class WeatherCardView: UIButton {
     private let weatherCard: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: 335, height: 117)
@@ -16,43 +18,43 @@ final class weatherCardView: UIView {
         return imageView
     }()
 
-    private let myPlaceLabel:  UILabel = {
+    private let myPlaceLabel: UILabel = {
         let label = UILabel()
         label.text = "나의 위치"
         label.font = UIFont.SFPro(size: 24, weight: .bold)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 
-    private let cityLabel:  UILabel = {
+    private let cityLabel: UILabel = {
         let label = UILabel()
         label.text = "서울특별시"
         label.font = UIFont.SFPro(size: 17, weight: .medium)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 
-    private let stateLabel:  UILabel = {
+    private let stateLabel: UILabel = {
         let label = UILabel()
         label.text = "흐림"
         label.font = UIFont.SFPro(size: 16, weight: .medium)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 
-    private let temperatureLabel:  UILabel = {
+    private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.text = "21°"
         label.font = UIFont.SFPro(size: 52, weight: .light)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 
-    private let maxminLabel:  UILabel = {
+    private let maxminLabel: UILabel = {
         let label = UILabel()
         label.text = "최고:28° 최저:11°"
         label.font = UIFont.SFPro(size: 15, weight: .medium)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 

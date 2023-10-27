@@ -9,19 +9,25 @@ import UIKit
 
 import SnapKit
 
+protocol ClickCardViewDelegate: AnyObject {
+    func weatherCardTapped()
+}
+
 final class MainView: UIView {
+    weak var delegateClick: ClickCardViewDelegate?
+
     private lazy var moreButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.Main.ic_more, for: .normal)
-        button.tintColor = .white
+        button.tintColor = .WeatherWhite
         return button
     }()
 
-    private let titleLabel:  UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "날씨"
         label.font = UIFont.SFPro(size: 36, weight: .bold)
-        label.textColor = .white
+        label.textColor = .WeatherWhite
         return label
     }()
 
@@ -29,10 +35,10 @@ final class MainView: UIView {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.font = UIFont.SFPro(size: 19, weight: .regular)
-        searchBar.searchTextField.backgroundColor = .WeatherGray1
-        searchBar.searchTextField.textColor = .WeatherGray2
-        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "도시 또는 공항 검색", attributes: [NSAttributedString.Key.foregroundColor : UIColor.WeatherGray2])
-        searchBar.searchTextField.leftView?.tintColor = .WeatherGray2
+        searchBar.searchTextField.backgroundColor = .WeatherWhite_1
+        searchBar.searchTextField.textColor = .WeatherWhite_5
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "도시 또는 공항 검색", attributes: [NSAttributedString.Key.foregroundColor : UIColor.WeatherWhite_5])
+        searchBar.searchTextField.leftView?.tintColor = .WeatherWhite_5
         searchBar.layer.cornerRadius = 10
         return searchBar
     }()
@@ -41,25 +47,48 @@ final class MainView: UIView {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
-        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
 
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 50
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
-    private let weatherCard1 = weatherCardView()
+    private let weatherCard1: WeatherCardView = {
+        let view = WeatherCardView()
+        view.addTarget(self, action: #selector(clickWeatherCard), for: .touchUpInside)
+        return view
+    }()
+
+//    private func addWeatherCard() {
+//        (0..<7).map { idx in
+//            let WeatherCard: WeatherCardView = {
+//                let weatherCard = WeatherCardView()
+//                return weatherCard
+//            }()
+//            return WeatherCard
+//        }
+//        .forEach(stackView.addArrangedSubview)
+//    }
+
+    @objc func clickWeatherCard(sender: UITapGestureRecognizer) {
+        delegateClick?.weatherCardTapped()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setHierarchy()
         setConstraints()
+
+        //addWeatherCard()
     }
 
     required init?(coder: NSCoder) {
@@ -76,8 +105,8 @@ final class MainView: UIView {
     func setConstraints() {
         moreButton.snp.makeConstraints {
             $0.size.equalTo(44)
-            $0.top.equalTo(safeAreaLayoutGuide).offset(8)
-            $0.trailing.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(56)
+            $0.trailing.equalToSuperview().inset(20)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(moreButton.snp.bottom).offset(1)
@@ -89,11 +118,14 @@ final class MainView: UIView {
         }
         scrollView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(15)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.width.equalTo(335)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         stackView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.width.equalTo(335)
+            // $0.width.equalTo(335)
+            $0.width.equalToSuperview()
             $0.centerX.equalToSuperview()
         }
     }

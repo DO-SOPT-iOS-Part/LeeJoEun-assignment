@@ -26,7 +26,10 @@
 		0219E5812AE8F3F200DAAEC0 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5802AE8F3F200DAAEC0 /* UIImage+.swift */; };
 		0219E5832AE903FA00DAAEC0 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5822AE903FA00DAAEC0 /* ColorLiterals.swift */; };
 		0219E5852AE935D800DAAEC0 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5842AE935D800DAAEC0 /* UIStackView+.swift */; };
-		0219E5872AE9391100DAAEC0 /* weatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5862AE9391100DAAEC0 /* weatherCardView.swift */; };
+		0219E5872AE9391100DAAEC0 /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5862AE9391100DAAEC0 /* WeatherCardView.swift */; };
+		0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D72F2AE95B3800B825C4 /* DetailViewController.swift */; };
+		0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7312AE95CFE00B825C4 /* DetailView.swift */; };
+		0256D7342AE979A500B825C4 /* WeatherOfHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,10 @@
 		0219E5802AE8F3F200DAAEC0 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		0219E5822AE903FA00DAAEC0 /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
 		0219E5842AE935D800DAAEC0 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
-		0219E5862AE9391100DAAEC0 /* weatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherCardView.swift; sourceTree = "<group>"; };
+		0219E5862AE9391100DAAEC0 /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
+		0256D72F2AE95B3800B825C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0256D7312AE95CFE00B825C4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOfHourView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 		0219E5502AE8D5CA00DAAEC0 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				0256D72F2AE95B3800B825C4 /* DetailViewController.swift */,
+				0256D7312AE95CFE00B825C4 /* DetailView.swift */,
+				0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -126,7 +135,7 @@
 			children = (
 				0219E5522AE8D62500DAAEC0 /* MainView.swift */,
 				0219E5542AE8D63200DAAEC0 /* MainViewController.swift */,
-				0219E5862AE9391100DAAEC0 /* weatherCardView.swift */,
+				0219E5862AE9391100DAAEC0 /* WeatherCardView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -253,8 +262,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0256D7342AE979A500B825C4 /* WeatherOfHourView.swift in Sources */,
+				0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */,
 				0219E5532AE8D62500DAAEC0 /* MainView.swift in Sources */,
 				0219E57F2AE8F37200DAAEC0 /* ImageLiterals.swift in Sources */,
+				0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */,
 				0219E53C2AE8D04F00DAAEC0 /* ViewController.swift in Sources */,
 				0219E5832AE903FA00DAAEC0 /* ColorLiterals.swift in Sources */,
 				0219E57D2AE8E9DB00DAAEC0 /* UIView+.swift in Sources */,
@@ -262,7 +274,7 @@
 				0219E5382AE8D04F00DAAEC0 /* AppDelegate.swift in Sources */,
 				0219E5812AE8F3F200DAAEC0 /* UIImage+.swift in Sources */,
 				0219E5852AE935D800DAAEC0 /* UIStackView+.swift in Sources */,
-				0219E5872AE9391100DAAEC0 /* weatherCardView.swift in Sources */,
+				0219E5872AE9391100DAAEC0 /* WeatherCardView.swift in Sources */,
 				0219E5552AE8D63200DAAEC0 /* MainViewController.swift in Sources */,
 				0219E53A2AE8D04F00DAAEC0 /* SceneDelegate.swift in Sources */,
 			);

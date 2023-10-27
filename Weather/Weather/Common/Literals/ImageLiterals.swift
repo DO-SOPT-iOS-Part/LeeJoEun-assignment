@@ -18,5 +18,9 @@ enum ImageLiterals {
 
     enum Detail {
         static var img_detailBG: UIImage { .load(name: "img_detailBG") }
+        static var ic_dot: UIImage { .load(name: "ic_dot") }
+        static var ic_map: UIImage { .load(name: "ic_map") }
+        static var ic_list: UIImage { .load(name: "ic_list") }
+        static var ic_paperplane: UIImage { .load(name: "ic_paperplane") }
     }
 }
