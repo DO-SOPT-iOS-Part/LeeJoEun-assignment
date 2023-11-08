@@ -96,27 +96,22 @@ final class DetailView: UIView {
         return view
     }()
 
-    private let weatherScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsHorizontalScrollIndicator = true
-        return scrollView
-    }()
+    let WeatherOfHourCollectionView: UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
 
-    private let weatherContentView: UIView = {
-        let contentView = UIView()
-        return contentView
-    }()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(WeatherOfHourCell.self,
+                                forCellWithReuseIdentifier: WeatherOfHourCell.identifier)
 
-    private lazy var weatherStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 30
-        return stackView
+        return collectionView
     }()
 
     private let bottomNavigationView: UIView = {
         let view = UIView()
+
         return view
     }()
 
@@ -124,6 +119,7 @@ final class DetailView: UIView {
         let view = UIView()
         view.backgroundColor = .WeatherWhite
         view.alpha = 0.3
+
         return view
     }()
 
@@ -131,6 +127,7 @@ final class DetailView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.Detail.ic_map, for: .normal)
         button.tintColor = .WeatherWhite
+
         return button
     }()
 
@@ -138,12 +135,14 @@ final class DetailView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.Detail.ic_paperplane, for: .normal)
         button.tintColor = .WeatherWhite
+
         return button
     }()
 
     private lazy var bottomStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -151,6 +150,7 @@ final class DetailView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.Detail.ic_dot, for: .normal)
         button.tintColor = .WeatherWhite
+
         return button
     }()
 
@@ -158,7 +158,8 @@ final class DetailView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.Detail.ic_list, for: .normal)
         button.tintColor = .WeatherWhite
-        // button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+
         return button
     }()
 
@@ -166,26 +167,11 @@ final class DetailView: UIView {
         delegateList?.listButtonTapped()
     }
 
-    private func addWeatherOfHour() {
-        (0..<2).map { idx in
-            let weatherOfHour: WeatherOfHour = {
-                let weather = WeatherOfHour()
-                return weather
-            }()
-            return weatherOfHour
-        }
-        .forEach(weatherStackView.addArrangedSubview)
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setHierarchy()
         setConstraints()
-
-        addWeatherOfHour()
-
-        listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -195,13 +181,10 @@ final class DetailView: UIView {
 
 extension DetailView {
     func setHierarchy() {
-        self.addSubviews(backgroundImageView)
-        backgroundImageView.addSubviews(scrollView, bottomNavigationView)
-        scrollView.addSubview(contentView)
+        self.addSubviews(backgroundImageView, scrollView, bottomNavigationView)
+        scrollView.addSubviews(contentView)
         contentView.addSubviews(cityLabel, temperatureLabel, stateLabel, maxminLabel, rectView)
-        rectView.addSubviews(descriptionTextView, dividerView, weatherScrollView)
-        weatherScrollView.addSubview(weatherContentView)
-        weatherContentView.addSubview(weatherStackView)
+        rectView.addSubviews(descriptionTextView, dividerView, WeatherOfHourCollectionView)
         bottomStackView.addArrangedSubviews(paperPlaneButton, dotButton)
         bottomNavigationView.addSubviews(dividerView2, mapButton, bottomStackView, listButton)
     }
@@ -211,8 +194,7 @@ extension DetailView {
             $0.edges.equalToSuperview()
         }
         scrollView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(690)
+            $0.edges.equalToSuperview()
         }
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
@@ -220,7 +202,7 @@ extension DetailView {
             $0.height.equalTo(scrollView)
         }
         cityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(18)
+            $0.top.equalToSuperview().inset(78)
             $0.centerX.equalToSuperview()
         }
         temperatureLabel.snp.makeConstraints {
@@ -247,22 +229,13 @@ extension DetailView {
         }
         dividerView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(66)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(320)
+            $0.leading.trailing.equalToSuperview().inset(14)
             $0.height.equalTo(0.5)
         }
-        weatherScrollView.snp.makeConstraints {
-            $0.top.equalTo(dividerView.snp.bottom).offset(10)
-            $0.height.equalTo(122)
-            $0.leading.trailing.equalToSuperview()
-        }
-        weatherContentView.snp.makeConstraints {
-            $0.edges.equalTo(weatherScrollView.contentLayoutGuide)
-            $0.width.equalTo(weatherScrollView.frameLayoutGuide)
-            $0.height.equalTo(weatherScrollView)
-        }
-        weatherStackView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+        WeatherOfHourCollectionView.snp.makeConstraints {
+            $0.top.equalTo(dividerView.snp.bottom).offset(4)
+            $0.bottom.equalToSuperview().inset(4)
+            $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         bottomNavigationView.snp.makeConstraints {

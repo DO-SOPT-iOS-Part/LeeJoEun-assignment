@@ -9,7 +9,9 @@ import UIKit
 
 import SnapKit
 
-final class WeatherOfHour: UIView {
+final class WeatherOfHourCell: UICollectionViewCell {
+    static let identifier = "WeatherOfHourCell"
+
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -53,7 +55,7 @@ final class WeatherOfHour: UIView {
     }
 }
 
-extension WeatherOfHour {
+extension WeatherOfHourCell {
     func setHierarchy() {
         self.addSubview(stackView)
         stackView.addArrangedSubviews(hourLabel, weatherImage, temperatureLabel)
@@ -62,7 +64,7 @@ extension WeatherOfHour {
     func setConstraints() {
         stackView.snp.makeConstraints {
             $0.width.equalTo(34)
-            $0.height.equalTo(122)
+            $0.height.equalTo(118)
         }
         hourLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()

@@ -16,6 +16,8 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         detailView.delegateList = self
+        detailView.WeatherOfHourCollectionView.delegate = self
+        detailView.WeatherOfHourCollectionView.dataSource = self
 
         setHierarchy()
         setConstraints()
@@ -41,5 +43,28 @@ extension DetailViewController: PushMainViewDelegate {
     func listButtonTapped() {
         print("listButtonTapped")
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension DetailViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
+                                      UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherOfHourCell.identifier, for: indexPath) as? WeatherOfHourCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 44, height: 122)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
 }
