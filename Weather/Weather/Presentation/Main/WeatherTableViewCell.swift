@@ -9,7 +9,9 @@ import UIKit
 
 import SnapKit
 
-final class WeatherCardView: UIButton {
+final class WeatherTableViewCell: UITableViewCell {
+    static let identifier = "WeatherTableViewCell"
+
     private let weatherCard: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.Main.img_cardBG
@@ -57,19 +59,26 @@ final class WeatherCardView: UIButton {
         return label
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        setHierarchy()
-        setConstraints()
+    func setData(text: String) {
+        self.cityLabel.text = text
     }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            self.backgroundColor = .clear
+            self.selectionStyle = .none
+
+            setHierarchy()
+            setConstraints()
+        }
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension WeatherCardView {
+extension WeatherTableViewCell {
     func setHierarchy() {
         addSubview(weatherCard)
         weatherCard.addSubviews(myPlaceLabel, cityLabel, stateLabel, temperatureLabel, maxminLabel)
