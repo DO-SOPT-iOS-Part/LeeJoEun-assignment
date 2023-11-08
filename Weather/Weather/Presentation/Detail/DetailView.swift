@@ -191,7 +191,9 @@ final class DetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+extension DetailView {
     func setHierarchy() {
         self.addSubviews(backgroundImageView)
         backgroundImageView.addSubviews(scrollView, bottomNavigationView)

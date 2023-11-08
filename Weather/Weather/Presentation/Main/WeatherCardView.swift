@@ -12,7 +12,6 @@ import SnapKit
 final class WeatherCardView: UIButton {
     private let weatherCard: UIImageView = {
         let imageView = UIImageView()
-        imageView.frame = CGRect(x: 0, y: 0, width: 335, height: 117)
         imageView.image = ImageLiterals.Main.img_cardBG
         imageView.layer.cornerRadius = 16
         return imageView
@@ -68,7 +67,9 @@ final class WeatherCardView: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+extension WeatherCardView {
     func setHierarchy() {
         addSubview(weatherCard)
         weatherCard.addSubviews(myPlaceLabel, cityLabel, stateLabel, temperatureLabel, maxminLabel)

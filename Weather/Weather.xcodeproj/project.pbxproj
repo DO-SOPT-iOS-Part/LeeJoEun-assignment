@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0219E5382AE8D04F00DAAEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5372AE8D04F00DAAEC0 /* AppDelegate.swift */; };
 		0219E53A2AE8D04F00DAAEC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5392AE8D04F00DAAEC0 /* SceneDelegate.swift */; };
-		0219E53C2AE8D04F00DAAEC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E53B2AE8D04F00DAAEC0 /* ViewController.swift */; };
 		0219E5412AE8D05100DAAEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0219E5402AE8D05100DAAEC0 /* Assets.xcassets */; };
 		0219E5442AE8D05100DAAEC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0219E5422AE8D05100DAAEC0 /* LaunchScreen.storyboard */; };
 		0219E54D2AE8D48300DAAEC0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0219E54C2AE8D48300DAAEC0 /* SnapKit */; };
@@ -36,7 +35,6 @@
 		0219E5342AE8D04F00DAAEC0 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0219E5372AE8D04F00DAAEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0219E5392AE8D04F00DAAEC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0219E53B2AE8D04F00DAAEC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0219E5402AE8D05100DAAEC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0219E5432AE8D05100DAAEC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0219E5452AE8D05100DAAEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				0219E54E2AE8D59900DAAEC0 /* Common */,
 				0219E5372AE8D04F00DAAEC0 /* AppDelegate.swift */,
 				0219E5392AE8D04F00DAAEC0 /* SceneDelegate.swift */,
-				0219E53B2AE8D04F00DAAEC0 /* ViewController.swift */,
 				0219E5422AE8D05100DAAEC0 /* LaunchScreen.storyboard */,
 				0219E5452AE8D05100DAAEC0 /* Info.plist */,
 			);
@@ -267,7 +264,6 @@
 				0219E5532AE8D62500DAAEC0 /* MainView.swift in Sources */,
 				0219E57F2AE8F37200DAAEC0 /* ImageLiterals.swift in Sources */,
 				0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */,
-				0219E53C2AE8D04F00DAAEC0 /* ViewController.swift in Sources */,
 				0219E5832AE903FA00DAAEC0 /* ColorLiterals.swift in Sources */,
 				0219E57D2AE8E9DB00DAAEC0 /* UIView+.swift in Sources */,
 				0219E57B2AE8E0D700DAAEC0 /* FontLiterals.swift in Sources */,
