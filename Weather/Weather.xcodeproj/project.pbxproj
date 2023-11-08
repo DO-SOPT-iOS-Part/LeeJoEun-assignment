@@ -28,7 +28,7 @@
 		0219E5872AE9391100DAAEC0 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0219E5862AE9391100DAAEC0 /* WeatherTableViewCell.swift */; };
 		0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D72F2AE95B3800B825C4 /* DetailViewController.swift */; };
 		0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7312AE95CFE00B825C4 /* DetailView.swift */; };
-		0256D7342AE979A500B825C4 /* WeatherOfHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */; };
+		0256D7342AE979A500B825C4 /* WeatherOfHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7332AE979A500B825C4 /* WeatherOfHourCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +54,7 @@
 		0219E5862AE9391100DAAEC0 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		0256D72F2AE95B3800B825C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0256D7312AE95CFE00B825C4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOfHourView.swift; sourceTree = "<group>"; };
+		0256D7332AE979A500B825C4 /* WeatherOfHourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOfHourCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,7 @@
 			children = (
 				0256D72F2AE95B3800B825C4 /* DetailViewController.swift */,
 				0256D7312AE95CFE00B825C4 /* DetailView.swift */,
-				0256D7332AE979A500B825C4 /* WeatherOfHourView.swift */,
+				0256D7332AE979A500B825C4 /* WeatherOfHourCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0256D7342AE979A500B825C4 /* WeatherOfHourView.swift in Sources */,
+				0256D7342AE979A500B825C4 /* WeatherOfHourCell.swift in Sources */,
 				0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */,
 				0219E5532AE8D62500DAAEC0 /* MainView.swift in Sources */,
 				0219E57F2AE8F37200DAAEC0 /* ImageLiterals.swift in Sources */,
