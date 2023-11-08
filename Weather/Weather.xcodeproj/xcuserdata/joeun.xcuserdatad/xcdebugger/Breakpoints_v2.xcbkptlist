@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "01C6D4EE-7833-4C55-9292-91D56D940DCE"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC1F427E-922D-4BD5-980C-30EB4E795B00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/Presentation/Detail/WeatherOfHourView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "stackView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FC1F427E-922D-4BD5-980C-30EB4E795B00 - 4a68a802c479d607"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.UIView in variable initialization expression of Weather.WeatherOfHour.contentView : __C.UIView"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joeun/Desktop/SOPT/LeeJoEun-assignment/Weather/Weather/Presentation/Detail/WeatherOfHourView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "FC1F427E-922D-4BD5-980C-30EB4E795B00 - f47c40e68d3a3341"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.WeatherOfHour.init(frame: __C.CGRect) -&gt; Weather.WeatherOfHour"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joeun/Desktop/SOPT/LeeJoEun-assignment/Weather/Weather/Presentation/Detail/WeatherOfHourView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "FC1F427E-922D-4BD5-980C-30EB4E795B00 - d4c8ba3fdcd3e845"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.WeatherOfHour.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Weather.WeatherOfHour&gt;"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joeun/Desktop/SOPT/LeeJoEun-assignment/Weather/Weather/Presentation/Detail/WeatherOfHourView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
