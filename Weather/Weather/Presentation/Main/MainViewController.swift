@@ -16,7 +16,8 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
 
-        mainView.delegateClick = self
+        mainView.weatherTableView.delegate = self
+        mainView.weatherTableView.dataSource = self
 
         setHierarchy()
         setConstraints()
@@ -33,9 +34,21 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: ClickCardViewDelegate {
-    func weatherCardTapped() {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = mainView.weatherTableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+        //cell.setData(text: infoArr[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index: Int = indexPath.row
         let nextVC = DetailViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

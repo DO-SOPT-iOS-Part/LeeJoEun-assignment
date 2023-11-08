@@ -8,14 +8,7 @@
 import UIKit
 
 import SnapKit
-
-protocol ClickCardViewDelegate: AnyObject {
-    func weatherCardTapped()
-}
-
 final class MainView: UIView {
-    weak var delegateClick: ClickCardViewDelegate?
-
     private lazy var moreButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.Main.ic_more, for: .normal)
@@ -55,22 +48,17 @@ final class MainView: UIView {
         return contentView
     }()
 
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 14
-        return stackView
-    }()
+    lazy var weatherTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
+        tableView.backgroundColor = .clear
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = 132
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 500
 
-    private let weatherCard1: WeatherCardView = {
-        let view = WeatherCardView()
-        view.addTarget(self, action: #selector(clickWeatherCard), for: .touchUpInside)
-        return view
+        return tableView
     }()
-
-    @objc func clickWeatherCard(sender: UITapGestureRecognizer) {
-        delegateClick?.weatherCardTapped()
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -88,8 +76,7 @@ extension MainView {
     func setHierarchy() {
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(moreButton, titleLabel, searchBar, stackView)
-        stackView.addArrangedSubviews(weatherCard1)
+        contentView.addSubviews(moreButton, titleLabel, searchBar, weatherTableView)
     }
 
     func setConstraints() {
@@ -115,7 +102,7 @@ extension MainView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
-        stackView.snp.makeConstraints {
+        weatherTableView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(14)
             $0.bottom.equalToSuperview()
             $0.width.equalTo(335)
