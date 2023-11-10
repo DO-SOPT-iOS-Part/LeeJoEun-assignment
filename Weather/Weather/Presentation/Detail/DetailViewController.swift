@@ -12,6 +12,10 @@ import SnapKit
 final class DetailViewController: UIViewController {
     let detailView = DetailView()
 
+    private let hourData: [[String]] = [["Now", "sun.max.fill", "21°"], ["10시", "cloud.drizzle.fill", "21°"], ["11시", "cloud.heavyrain.fill", "21°"], ["12시", "cloud.bolt.fill", "21°"], ["13시", "cloud.sun.rain.fill", "19°"], ["14시", "cloud.sleet.fill", "19°"], ["15시", "cloud.moon.fill", "19°"], ["16시", "cloud.moon.fill", "17°"], ["17시", "moon.fill", "17°"], ["18시", "moon.fill", "17°"]]
+
+    private let dayData: [[Any]] = [["오늘", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar1,"29°"], ["월", "cloud.drizzle.fill", "45%", "15°", ImageLiterals.Detail.img_temparatureBar2,"29°"], ["화", "cloud.drizzle.fill", "65%", "15°", ImageLiterals.Detail.img_temparatureBar3,"29°"], ["수", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar4,"29°"], ["목", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar5,"29°"], ["금", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar5,"29°"], ["토", "cloud.drizzle.fill", "70%", "15°", ImageLiterals.Detail.img_temparatureBar3,"29°"], ["일", "cloud.drizzle.fill", "60%", "15°", ImageLiterals.Detail.img_temparatureBar2,"29°"], ["월", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar6,"29°"], ["화", "sun.max.fill", "0%", "15°", ImageLiterals.Detail.img_temparatureBar6,"29°"]]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,13 +55,14 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDeleg
                                  UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return hourData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherOfHourCell.identifier, for: indexPath) as? WeatherOfHourCell else {
             return UICollectionViewCell()
         }
+        cell.setHourData(hour: hourData[indexPath.row][0],weather: hourData[indexPath.row][1], temperature: hourData[indexPath.row][2])
         return cell
     }
 
@@ -66,13 +71,13 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDeleg
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 12
+        return 16
     }
 }
 
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dayData.count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -80,8 +85,13 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = detailView.weatherOfDayTableView.dequeueReusableCell(withIdentifier: RainyDayTableViewCell.identifier, for: indexPath) as? RainyDayTableViewCell else { return UITableViewCell() }
-        //cell.setData(text: infoArr[indexPath.row])
+        if (dayData[indexPath.row][2] as! String != "0%") {
+            guard let cell = detailView.weatherOfDayTableView.dequeueReusableCell(withIdentifier: RainyDayTableViewCell.identifier, for: indexPath) as? RainyDayTableViewCell else { return UITableViewCell() }
+            cell.setRainyDayData(day: dayData[indexPath.row][0] as! String, weather: dayData[indexPath.row][1] as! String, percent: dayData[indexPath.row][2] as! String,min: dayData[indexPath.row][3] as! String, temperatureImage: dayData[indexPath.row][4] as! UIImage, max: dayData[indexPath.row][5] as! String)
+            return cell
+        }
+        guard let cell = detailView.weatherOfDayTableView.dequeueReusableCell(withIdentifier: WeatherOfDayTableViewCell.identifier, for: indexPath) as? WeatherOfDayTableViewCell else { return UITableViewCell() }
+        cell.setDayData(day: dayData[indexPath.row][0] as! String, weather: dayData[indexPath.row][1] as! String, min: dayData[indexPath.row][3] as! String, temperatureImage: dayData[indexPath.row][4] as! UIImage, max: dayData[indexPath.row][5] as! String)
         return cell
     }
 

@@ -111,6 +111,7 @@ final class DetailView: UIView {
 
     let weatherOfDayTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(WeatherOfDayTableViewCell.self, forCellReuseIdentifier: WeatherOfDayTableViewCell.identifier)
         tableView.register(RainyDayTableViewCell.self, forCellReuseIdentifier: RainyDayTableViewCell.identifier)
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
@@ -218,7 +219,7 @@ extension DetailView {
             $0.height.equalTo(1250)
         }
         cityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30)
+            $0.top.equalToSuperview().inset(26)
             $0.centerX.equalToSuperview()
         }
         temperatureLabel.snp.makeConstraints {

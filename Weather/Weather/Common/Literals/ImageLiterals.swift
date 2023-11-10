@@ -22,6 +22,11 @@ enum ImageLiterals {
         static var ic_map: UIImage { .load(name: "ic_map") }
         static var ic_list: UIImage { .load(name: "ic_list") }
         static var ic_paperplane: UIImage { .load(name: "ic_paperplane") }
-        static var img_temparatureBar: UIImage { .load(name: "temparatureBar") }
+        static var img_temparatureBar1: UIImage { .load(name: "temparatureBar1") }
+        static var img_temparatureBar2: UIImage { .load(name: "temparatureBar2") }
+        static var img_temparatureBar3: UIImage { .load(name: "temparatureBar3") }
+        static var img_temparatureBar4: UIImage { .load(name: "temparatureBar4") }
+        static var img_temparatureBar5: UIImage { .load(name: "temparatureBar5") }
+        static var img_temparatureBar6: UIImage { .load(name: "temparatureBar6") }
     }
 }

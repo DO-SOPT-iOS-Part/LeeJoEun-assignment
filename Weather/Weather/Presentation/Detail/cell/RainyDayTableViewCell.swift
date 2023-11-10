@@ -46,7 +46,7 @@ final class RainyDayTableViewCell: UITableViewCell {
 
     private let temparatureImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.Detail.img_temparatureBar
+        imageView.image = ImageLiterals.Detail.img_temparatureBar1
         return imageView
     }()
 
@@ -57,6 +57,15 @@ final class RainyDayTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
+
+    func setRainyDayData(day: String, weather: String, percent: String, min: String, temperatureImage: UIImage, max: String) {
+        self.dayLabel.text = day
+        self.weatherImage.image = UIImage(systemName: weather)
+        self.percentLabel.text = percent
+        self.minLabel.text = min
+        self.temparatureImage.image = temperatureImage
+        self.maxLabel.text = max
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
