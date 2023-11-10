@@ -80,7 +80,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = detailView.weatherOfDayTableView.dequeueReusableCell(withIdentifier: WeatherOfDayTableViewCell.identifier, for: indexPath) as? WeatherOfDayTableViewCell else { return UITableViewCell() }
+        guard let cell = detailView.weatherOfDayTableView.dequeueReusableCell(withIdentifier: RainyDayTableViewCell.identifier, for: indexPath) as? RainyDayTableViewCell else { return UITableViewCell() }
         //cell.setData(text: infoArr[indexPath.row])
         return cell
     }
