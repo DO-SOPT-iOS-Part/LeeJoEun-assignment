@@ -38,7 +38,7 @@ final class WeatherOfDayTableViewCell: UITableViewCell {
 
     private let temparatureImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.Detail.img_temparatureBar
+        imageView.image = ImageLiterals.Detail.img_temparatureBar1
         return imageView
     }()
 
@@ -49,6 +49,14 @@ final class WeatherOfDayTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
+
+    func setDayData(day: String, weather: String, min: String, temperatureImage: UIImage, max: String) {
+        self.dayLabel.text = day
+        self.weatherImage.image = UIImage(systemName: weather)
+        self.minLabel.text = min
+        self.temparatureImage.image = temperatureImage
+        self.maxLabel.text = max
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -79,7 +87,7 @@ extension WeatherOfDayTableViewCell {
         weatherImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)
             $0.leading.equalToSuperview().inset(87)
-            $0.height.equalTo(26)
+            $0.height.equalTo(28)
         }
         minLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)

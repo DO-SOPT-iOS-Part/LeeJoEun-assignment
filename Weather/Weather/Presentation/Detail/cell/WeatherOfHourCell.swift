@@ -44,6 +44,12 @@ final class WeatherOfHourCell: UICollectionViewCell {
         return label
     }()
 
+    func setHourData(hour: String, weather: String, temperature: String) {
+        self.hourLabel.text = hour
+        self.weatherImage.image = UIImage(systemName: weather)
+        self.temperatureLabel.text = temperature
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
