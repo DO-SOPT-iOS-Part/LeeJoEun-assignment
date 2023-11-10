@@ -31,4 +31,13 @@ extension UIColor {
     static var WeatherBlack: UIColor {
         return UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     }
+
+    static var WeatherYellow: UIColor {
+        return UIColor(red: 0.97, green: 0.84, blue: 0.29, alpha: 1)
+    }
+
+    static var WeatherDarkBlue: UIColor {
+        return  UIColor(red: 0.165, green: 0.188, blue: 0.251, alpha: 1)
+
+    }
 }
