@@ -32,7 +32,7 @@ final class WeatherOfDayTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "16°"
         label.font = UIFont.SFPro(size: 22, weight: .medium)
-        label.textColor = .WeatherWhite
+        label.textColor = .WeatherWhite_2
         return label
     }()
 
