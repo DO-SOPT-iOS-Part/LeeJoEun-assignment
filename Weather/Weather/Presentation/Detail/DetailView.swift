@@ -111,7 +111,7 @@ final class DetailView: UIView {
 
     let weatherOfDayTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(WeatherOfDayTableViewCell.self, forCellReuseIdentifier: WeatherOfDayTableViewCell.identifier)
+        tableView.register(RainyDayTableViewCell.self, forCellReuseIdentifier: RainyDayTableViewCell.identifier)
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
         tableView.rowHeight = 55

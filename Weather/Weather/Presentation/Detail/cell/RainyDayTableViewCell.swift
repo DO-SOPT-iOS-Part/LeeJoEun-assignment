@@ -1,16 +1,16 @@
 //
-//  WeatherOfDayTableViewCell.swift
+//  RainyDayTableViewCell.swift
 //  Weather
 //
-//  Created by 이조은 on 2023/11/09.
+//  Created by 이조은 on 2023/11/10.
 //
 
 import UIKit
 
 import SnapKit
 
-final class WeatherOfDayTableViewCell: UITableViewCell {
-    static let identifier = "WeatherOfDayTableViewCell"
+final class RainyDayTableViewCell: UITableViewCell {
+    static let identifier = "RainyDayTableViewCell"
 
     private let dayLabel: UILabel = {
         let label = UILabel()
@@ -22,17 +22,25 @@ final class WeatherOfDayTableViewCell: UITableViewCell {
 
     private let weatherImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "sun.max.fill")
-        imageView.tintColor = .WeatherYellow
+        imageView.image = UIImage(systemName: "cloud.drizzle.fill")
+        imageView.tintColor = .WeatherWhite
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+
+    private let percentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "60%"
+        label.font = UIFont.SFPro(size: 15, weight: .medium)
+        label.textColor = .WeatherSkyBlue
+        return label
     }()
 
     private let minLabel: UILabel = {
         let label = UILabel()
         label.text = "16°"
         label.font = UIFont.SFPro(size: 22, weight: .medium)
-        label.textColor = .WeatherWhite
+        label.textColor = .WeatherWhite_2
         return label
     }()
 
@@ -64,9 +72,9 @@ final class WeatherOfDayTableViewCell: UITableViewCell {
     }
 }
 
-extension WeatherOfDayTableViewCell {
+extension RainyDayTableViewCell {
     func setHierarchy() {
-        self.addSubviews(dayLabel, weatherImage, minLabel, temparatureImage, maxLabel)
+        self.addSubviews(dayLabel, weatherImage, percentLabel, minLabel, temparatureImage, maxLabel)
     }
 
     func setConstraints() {
@@ -77,8 +85,13 @@ extension WeatherOfDayTableViewCell {
             $0.trailing.equalToSuperview().inset(278)
         }
         weatherImage.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14)
+            $0.top.equalToSuperview().inset(7)
             $0.leading.equalToSuperview().inset(87)
+            $0.height.equalTo(18)
+        }
+        percentLabel.snp.makeConstraints {
+            $0.top.equalTo(weatherImage.snp.bottom)
+            $0.leading.equalToSuperview().inset(84)
             $0.height.equalTo(26)
         }
         minLabel.snp.makeConstraints {
