@@ -25,7 +25,7 @@ final class DetailView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
 
@@ -96,7 +96,7 @@ final class DetailView: UIView {
         return view
     }()
 
-    let WeatherOfHourCollectionView: UICollectionView = {
+    let weatherOfHourCollectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
@@ -109,8 +109,24 @@ final class DetailView: UIView {
         return collectionView
     }()
 
+    let weatherOfDayTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(WeatherOfDayTableViewCell.self, forCellReuseIdentifier: WeatherOfDayTableViewCell.identifier)
+        tableView.backgroundColor = .clear
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = 55
+        tableView.separatorInset.left = 15
+        tableView.separatorInset.right = 15
+        tableView.layer.cornerRadius = 15
+        tableView.layer.borderColor = UIColor.WeatherWhite_03.cgColor
+        tableView.layer.borderWidth = 2
+
+        return tableView
+    }()
+
     private let bottomNavigationView: UIView = {
         let view = UIView()
+        view.backgroundColor = .WeatherDarkBlue
 
         return view
     }()
@@ -183,8 +199,8 @@ extension DetailView {
     func setHierarchy() {
         self.addSubviews(backgroundImageView, scrollView, bottomNavigationView)
         scrollView.addSubviews(contentView)
-        contentView.addSubviews(cityLabel, temperatureLabel, stateLabel, maxminLabel, rectView)
-        rectView.addSubviews(descriptionTextView, dividerView, WeatherOfHourCollectionView)
+        contentView.addSubviews(cityLabel, temperatureLabel, stateLabel, maxminLabel, rectView, weatherOfDayTableView)
+        rectView.addSubviews(descriptionTextView, dividerView, weatherOfHourCollectionView)
         bottomStackView.addArrangedSubviews(paperPlaneButton, dotButton)
         bottomNavigationView.addSubviews(dividerView2, mapButton, bottomStackView, listButton)
     }
@@ -197,12 +213,12 @@ extension DetailView {
             $0.edges.equalToSuperview()
         }
         contentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.edges.equalToSuperview()
             $0.width.equalTo(scrollView.frameLayoutGuide)
-            $0.height.equalTo(scrollView)
+            $0.height.equalTo(1250)
         }
         cityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(78)
+            $0.top.equalToSuperview().inset(30)
             $0.centerX.equalToSuperview()
         }
         temperatureLabel.snp.makeConstraints {
@@ -219,7 +235,7 @@ extension DetailView {
         }
         rectView.snp.makeConstraints {
             $0.top.equalTo(maxminLabel.snp.bottom).offset(54)
-            $0.width.equalTo(335)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(212)
             $0.centerX.equalToSuperview()
         }
@@ -232,15 +248,21 @@ extension DetailView {
             $0.leading.trailing.equalToSuperview().inset(14)
             $0.height.equalTo(0.5)
         }
-        WeatherOfHourCollectionView.snp.makeConstraints {
+        weatherOfHourCollectionView.snp.makeConstraints {
             $0.top.equalTo(dividerView.snp.bottom).offset(4)
             $0.bottom.equalToSuperview().inset(4)
             $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
         }
+        weatherOfDayTableView.snp.makeConstraints {
+            $0.top.equalTo(rectView.snp.bottom).offset(20)
+            $0.height.equalTo(620)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
         bottomNavigationView.snp.makeConstraints {
-            $0.height.equalTo(48)
-            $0.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
+            $0.height.equalTo(78)
+            $0.leading.trailing.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalToSuperview()
         }
         dividerView2.snp.makeConstraints {
             $0.height.equalTo(0.5)

@@ -11,14 +11,14 @@ import SnapKit
 
 final class WeatherTableViewCell: UITableViewCell {
     static let identifier = "WeatherTableViewCell"
-
+    
     private let weatherCard: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.Main.img_cardBG
         imageView.layer.cornerRadius = 16
         return imageView
     }()
-
+    
     private let myPlaceLabel: UILabel = {
         let label = UILabel()
         label.text = "나의 위치"
@@ -26,7 +26,7 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
-
+    
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.text = "서울특별시"
@@ -34,7 +34,7 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
-
+    
     private let stateLabel: UILabel = {
         let label = UILabel()
         label.text = "흐림"
@@ -42,7 +42,7 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
-
+    
     private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.text = "21°"
@@ -50,7 +50,7 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
-
+    
     private let maxminLabel: UILabel = {
         let label = UILabel()
         label.text = "최고:28° 최저:11°"
@@ -58,21 +58,21 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
-
+    
     func setData(text: String) {
         self.cityLabel.text = text
     }
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            self.backgroundColor = .clear
-            self.selectionStyle = .none
-
-            setHierarchy()
-            setConstraints()
-        }
-
-
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -83,7 +83,7 @@ extension WeatherTableViewCell {
         addSubview(weatherCard)
         weatherCard.addSubviews(myPlaceLabel, cityLabel, stateLabel, temperatureLabel, maxminLabel)
     }
-
+    
     func setConstraints() {
         weatherCard.snp.makeConstraints {
             $0.width.equalTo(335)

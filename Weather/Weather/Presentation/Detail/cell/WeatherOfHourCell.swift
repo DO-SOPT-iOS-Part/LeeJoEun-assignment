@@ -32,6 +32,7 @@ final class WeatherOfHourCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cloud.moon.fill")
         imageView.tintColor = .WeatherWhite
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 

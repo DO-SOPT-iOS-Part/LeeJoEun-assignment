@@ -22,5 +22,6 @@ enum ImageLiterals {
         static var ic_map: UIImage { .load(name: "ic_map") }
         static var ic_list: UIImage { .load(name: "ic_list") }
         static var ic_paperplane: UIImage { .load(name: "ic_paperplane") }
+        static var img_temparatureBar: UIImage { .load(name: "temparatureBar") }
     }
 }
