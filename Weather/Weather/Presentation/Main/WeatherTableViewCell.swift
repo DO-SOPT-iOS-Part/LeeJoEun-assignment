@@ -19,7 +19,7 @@ final class WeatherTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let myPlaceLabel: UILabel = {
+    private let cityLabel: UILabel = {
         let label = UILabel()
         label.text = "나의 위치"
         label.font = UIFont.SFPro(size: 24, weight: .bold)
@@ -27,9 +27,9 @@ final class WeatherTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let cityLabel: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "서울특별시"
+        label.text = "00:00"
         label.font = UIFont.SFPro(size: 17, weight: .medium)
         label.textColor = .WeatherWhite
         return label
@@ -58,9 +58,41 @@ final class WeatherTableViewCell: UITableViewCell {
         label.textColor = .WeatherWhite
         return label
     }()
+
+    func translateToKR(_ word: String) -> String {
+        let translationMap: [String: String] = [
+            "Seoul": "서울",
+            "Mokpo": "목포",
+            "Busan": "부산",
+            "Jeju City": "제주도",
+            "Gunsan": "군산",
+            "Rain": "비",
+            "Clouds": "흐림",
+            "Clear": "맑음",
+            "Snow": "눈"
+        ]
+        return translationMap[word] ?? word
+    }
+
+    func formatTimestamp(_ timestamp: Double) -> String {
+        let date = Date(timeIntervalSince1970: timestamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
+    }
+
+    func convertToCelsius(_ fahrenheit: Double) -> Int {
+        return Int(fahrenheit - 273.15)
+    }
     
-    func setData(text: String) {
-        self.cityLabel.text = text
+    func setData(city: String, time: Double, temp: Double, temp_min: Double, temp_max: Double, weather: String) {
+        self.cityLabel.text = translateToKR(city)
+        self.timeLabel.text = formatTimestamp(time)
+        self.temperatureLabel.text = "\(convertToCelsius(temp))°"
+        self.maxminLabel.text = "최고:\(convertToCelsius(temp_min))° 최저:\(convertToCelsius(temp_max))°"
+        self.stateLabel.text = translateToKR(weather)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -81,7 +113,7 @@ final class WeatherTableViewCell: UITableViewCell {
 extension WeatherTableViewCell {
     func setHierarchy() {
         addSubview(weatherCard)
-        weatherCard.addSubviews(myPlaceLabel, cityLabel, stateLabel, temperatureLabel, maxminLabel)
+        weatherCard.addSubviews(cityLabel, timeLabel, stateLabel, temperatureLabel, maxminLabel)
     }
     
     func setConstraints() {
@@ -89,12 +121,12 @@ extension WeatherTableViewCell {
             $0.width.equalTo(335)
             $0.height.equalTo(117)
         }
-        myPlaceLabel.snp.makeConstraints {
+        cityLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(16)
         }
-        cityLabel.snp.makeConstraints {
-            $0.top.equalTo(myPlaceLabel.snp.bottom).offset(2)
+        timeLabel.snp.makeConstraints {
+            $0.top.equalTo(cityLabel.snp.bottom).offset(2)
             $0.leading.equalToSuperview().inset(16)
         }
         stateLabel.snp.makeConstraints {

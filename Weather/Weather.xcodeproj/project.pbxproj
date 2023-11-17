@@ -31,6 +31,9 @@
 		0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D72F2AE95B3800B825C4 /* DetailViewController.swift */; };
 		0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7312AE95CFE00B825C4 /* DetailView.swift */; };
 		0256D7342AE979A500B825C4 /* WeatherOfHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0256D7332AE979A500B825C4 /* WeatherOfHourCell.swift */; };
+		02CEB9062B0672C60036A100 /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CEB9052B0672C60036A100 /* WeatherDTO.swift */; };
+		02CEB9082B0672FD0036A100 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CEB9072B0672FD0036A100 /* WeatherService.swift */; };
+		02CEB90A2B0674FB0036A100 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CEB9092B0674FB0036A100 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		0256D72F2AE95B3800B825C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0256D7312AE95CFE00B825C4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0256D7332AE979A500B825C4 /* WeatherOfHourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOfHourCell.swift; sourceTree = "<group>"; };
+		02CEB9052B0672C60036A100 /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
+		02CEB9072B0672FD0036A100 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		02CEB9092B0674FB0036A100 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 		0219E5362AE8D04F00DAAEC0 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				02CEB9042B0671E80036A100 /* Network */,
 				0219E54F2AE8D5AC00DAAEC0 /* Presentation */,
 				0219E54E2AE8D59900DAAEC0 /* Common */,
 				0219E5372AE8D04F00DAAEC0 /* AppDelegate.swift */,
@@ -192,6 +199,16 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		02CEB9042B0671E80036A100 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				02CEB9052B0672C60036A100 /* WeatherDTO.swift */,
+				02CEB9072B0672FD0036A100 /* WeatherService.swift */,
+				02CEB9092B0674FB0036A100 /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,12 +293,14 @@
 				0256D7342AE979A500B825C4 /* WeatherOfHourCell.swift in Sources */,
 				0256D7302AE95B3800B825C4 /* DetailViewController.swift in Sources */,
 				0219E5532AE8D62500DAAEC0 /* MainView.swift in Sources */,
+				02CEB9062B0672C60036A100 /* WeatherDTO.swift in Sources */,
 				0219E57F2AE8F37200DAAEC0 /* ImageLiterals.swift in Sources */,
 				0256D7322AE95CFE00B825C4 /* DetailView.swift in Sources */,
 				0219E5832AE903FA00DAAEC0 /* ColorLiterals.swift in Sources */,
 				0219E57D2AE8E9DB00DAAEC0 /* UIView+.swift in Sources */,
 				0219E57B2AE8E0D700DAAEC0 /* FontLiterals.swift in Sources */,
 				0219E5382AE8D04F00DAAEC0 /* AppDelegate.swift in Sources */,
+				02CEB9082B0672FD0036A100 /* WeatherService.swift in Sources */,
 				0219E5812AE8F3F200DAAEC0 /* UIImage+.swift in Sources */,
 				023684EE2AFE0B15001E0A66 /* RainyDayTableViewCell.swift in Sources */,
 				0219E5852AE935D800DAAEC0 /* UIStackView+.swift in Sources */,
@@ -289,6 +308,7 @@
 				0219E5872AE9391100DAAEC0 /* WeatherTableViewCell.swift in Sources */,
 				0219E5552AE8D63200DAAEC0 /* MainViewController.swift in Sources */,
 				0219E53A2AE8D04F00DAAEC0 /* SceneDelegate.swift in Sources */,
+				02CEB90A2B0674FB0036A100 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
