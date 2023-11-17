@@ -11,6 +11,8 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     let mainView = MainView()
+    let countryArr: [String] = ["seoul", "gunsan", "mokpo", "busan", "jeju"]
+    lazy var weatherData: [WeatherDTO] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,8 @@ final class MainViewController: UIViewController {
 
         setHierarchy()
         setConstraints()
+
+        getWeather(countryArr)
     }
 
     func setHierarchy() {
@@ -36,11 +40,17 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return weatherData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = mainView.weatherTableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+        cell.setData(city: weatherData[indexPath.row].name,
+                     time: Double(weatherData[indexPath.row].dt),
+                     temp: weatherData[indexPath.row].main.temp,
+                     temp_min: weatherData[indexPath.row].main.tempMin,
+                     temp_max: weatherData[indexPath.row].main.tempMax,
+                     weather: weatherData[indexPath.row].weather[0].main)
         return cell
     }
 
@@ -49,5 +59,25 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let nextVC = DetailViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension MainViewController {
+    func getWeather(_ countryArr: [String]) {
+        for i in 0...countryArr.count-1 {
+            let country = countryArr[i]
+            WeatherService().getWeather(country: country) { result in
+                switch result {
+                case .success(let weatherResponse):
+                    DispatchQueue.main.async {
+                        self.weatherData.append(weatherResponse)
+                        self.mainView.weatherTableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("API Error: \(error)")
+                }
+            }
+        }
+        self.mainView.weatherTableView.reloadData()
     }
 }
