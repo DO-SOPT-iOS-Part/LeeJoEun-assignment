@@ -17,6 +17,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        self.navigationController?.isNavigationBarHidden = true
 
         mainView.weatherTableView.delegate = self
         mainView.weatherTableView.dataSource = self
