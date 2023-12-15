@@ -69,7 +69,8 @@ final class WeatherTableViewCell: UITableViewCell {
             "Rain": "비",
             "Clouds": "흐림",
             "Clear": "맑음",
-            "Snow": "눈"
+            "Snow": "눈",
+            "Mist": "안개"
         ]
         return translationMap[word] ?? word
     }
